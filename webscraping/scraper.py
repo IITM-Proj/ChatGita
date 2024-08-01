@@ -312,77 +312,77 @@
 # import pandas as pd
 
 # List of URLs
-urls = [
-    'https://prabhupadabooks.com/conversations/1967/apr?d=1',
-    'https://prabhupadabooks.com/conversations/1968/feb?d=1',
-    'https://prabhupadabooks.com/conversations/1968/mar?d=1',
-    'https://prabhupadabooks.com/conversations/1969/jan?d=1',
-    'https://prabhupadabooks.com/conversations/1969/feb?d=1',
-    'https://prabhupadabooks.com/conversations/1969/mar?d=1',
-    'https://prabhupadabooks.com/conversations/1969/apr?d=1',
-    'https://prabhupadabooks.com/conversations/1969/may?d=1',
-    'https://prabhupadabooks.com/conversations/1969/jun?d=1',
-    'https://prabhupadabooks.com/conversations/1969/aug?d=1',
-    'https://prabhupadabooks.com/conversations/1969/dec?d=1',
-    'https://prabhupadabooks.com/conversations/1970/nov?d=1',
-    'https://prabhupadabooks.com/conversations/1970/dec?d=1',
-    'https://prabhupadabooks.com/conversations/1971/jan?d=1',
-    'https://prabhupadabooks.com/conversations/1971/feb?d=1',
-    'https://prabhupadabooks.com/conversations/1971/mar?d=1',
-    'https://prabhupadabooks.com/conversations/1971/apr?d=1',
-    'https://prabhupadabooks.com/conversations/1971/jun?d=1',
-    'https://prabhupadabooks.com/conversations/1971/jul?d=1',
-    'https://prabhupadabooks.com/conversations/1971/aug?d=1',
-    'https://prabhupadabooks.com/conversations/1971/sep?d=1',
-    'https://prabhupadabooks.com/conversations/1971/nov?d=1',
-    'https://prabhupadabooks.com/conversations/1972/jan?d=1',
-    'https://prabhupadabooks.com/conversations/1972/feb?d=1',
-    'https://prabhupadabooks.com/conversations/1972/mar?d=1',
-    'https://prabhupadabooks.com/conversations/1972/apr?d=1',
-    'https://prabhupadabooks.com/conversations/1972/may?d=1',
-    'https://prabhupadabooks.com/conversations/1972/jun?d=1',
-    'https://prabhupadabooks.com/conversations/1972/jul?d=1',
-    'https://prabhupadabooks.com/conversations/1972/sep?d=1',
-    'https://prabhupadabooks.com/conversations/1972/oct?d=1',
-    'https://prabhupadabooks.com/conversations/1973/feb?d=1',
-    'https://prabhupadabooks.com/conversations/1973/mar?d=1',
-    'https://prabhupadabooks.com/conversations/1973/apr?d=1',
-    'https://prabhupadabooks.com/conversations/1973/may?d=1',
-    'https://prabhupadabooks.com/conversations/1973/jun?d=1',
-    'https://prabhupadabooks.com/conversations/1973/jul?d=1',
-    'https://prabhupadabooks.com/conversations/1973/aug?d=1',
-    'https://prabhupadabooks.com/conversations/1973/sep?d=1',
-    'https://prabhupadabooks.com/conversations/1973/nov?d=1',
-    'https://prabhupadabooks.com/conversations/1973/dec?d=1',
-    'https://prabhupadabooks.com/conversations/1974/jan?d=1',
-    'https://prabhupadabooks.com/conversations/1974/feb?d=1',
-    'https://prabhupadabooks.com/conversations/1974/mar?d=1',
-    'https://prabhupadabooks.com/conversations/1974/apr?d=1',
-    'https://prabhupadabooks.com/conversations/1974/may?d=1',
-    'https://prabhupadabooks.com/conversations/1974/jun?d=1',
-    'https://prabhupadabooks.com/conversations/1974/jul?d=1',
-    'https://prabhupadabooks.com/conversations/1974/aug?d=1',
-    'https://prabhupadabooks.com/conversations/1974/sep?d=1',
-    'https://prabhupadabooks.com/conversations/1975/jan?d=1',
-    'https://prabhupadabooks.com/conversations/1975/feb?d=1',
-    'https://prabhupadabooks.com/conversations/1975/mar?d=1',
-    'https://prabhupadabooks.com/conversations/1975/apr?d=1',
-    'https://prabhupadabooks.com/conversations/1975/may?d=1',
-    'https://prabhupadabooks.com/conversations/1975/jun?d=1',
-    'https://prabhupadabooks.com/conversations/1975/jul?d=1',
-    'https://prabhupadabooks.com/conversations/1975/aug?d=1',
-    'https://prabhupadabooks.com/conversations/1975/sep?d=1',
-    'https://prabhupadabooks.com/conversations/1975/oct?d=1',
-    'https://prabhupadabooks.com/conversations/1975/nov?d=1',
-    'https://prabhupadabooks.com/conversations/1975/dec?d=1',
-    'https://prabhupadabooks.com/conversations/1976/jan?d=1',
-    'https://prabhupadabooks.com/conversations/1976/feb?d=1',
-    'https://prabhupadabooks.com/conversations/1976/mar?d=1',
-    'https://prabhupadabooks.com/conversations/1976/apr?d=1',
-    'https://prabhupadabooks.com/conversations/1976/may?d=1',
-    'https://prabhupadabooks.com/conversations/1976/jun?d=1',
-    'https://prabhupadabooks.com/conversations/1976/jul?d=1'
-    ]
+# urls = [
+#     'https://prabhupadabooks.com/conversations/1967/apr?d=1',
+#     'https://prabhupadabooks.com/conversations/1968/feb?d=1',
+#     'https://prabhupadabooks.com/conversations/1968/mar?d=1',
+#     'https://prabhupadabooks.com/conversations/1969/jan?d=1',
+#     'https://prabhupadabooks.com/conversations/1969/feb?d=1',
+#     'https://prabhupadabooks.com/conversations/1969/mar?d=1',
+#     'https://prabhupadabooks.com/conversations/1969/apr?d=1',
+#     'https://prabhupadabooks.com/conversations/1969/may?d=1',
+#     'https://prabhupadabooks.com/conversations/1969/jun?d=1',
+#     'https://prabhupadabooks.com/conversations/1969/aug?d=1',
+#     'https://prabhupadabooks.com/conversations/1969/dec?d=1',
+#     'https://prabhupadabooks.com/conversations/1970/nov?d=1',
+#     'https://prabhupadabooks.com/conversations/1970/dec?d=1',
+#     'https://prabhupadabooks.com/conversations/1971/jan?d=1',
+#     'https://prabhupadabooks.com/conversations/1971/feb?d=1',
+#     'https://prabhupadabooks.com/conversations/1971/mar?d=1',
+#     'https://prabhupadabooks.com/conversations/1971/apr?d=1',
+#     'https://prabhupadabooks.com/conversations/1971/jun?d=1',
+#     'https://prabhupadabooks.com/conversations/1971/jul?d=1',
+#     'https://prabhupadabooks.com/conversations/1971/aug?d=1',
+#     'https://prabhupadabooks.com/conversations/1971/sep?d=1',
+#     'https://prabhupadabooks.com/conversations/1971/nov?d=1',
+#     'https://prabhupadabooks.com/conversations/1972/jan?d=1',
+#     'https://prabhupadabooks.com/conversations/1972/feb?d=1',
+#     'https://prabhupadabooks.com/conversations/1972/mar?d=1',
+#     'https://prabhupadabooks.com/conversations/1972/apr?d=1',
+#     'https://prabhupadabooks.com/conversations/1972/may?d=1',
+#     'https://prabhupadabooks.com/conversations/1972/jun?d=1',
+#     'https://prabhupadabooks.com/conversations/1972/jul?d=1',
+#     'https://prabhupadabooks.com/conversations/1972/sep?d=1',
+#     'https://prabhupadabooks.com/conversations/1972/oct?d=1',
+#     'https://prabhupadabooks.com/conversations/1973/feb?d=1',
+#     'https://prabhupadabooks.com/conversations/1973/mar?d=1',
+#     'https://prabhupadabooks.com/conversations/1973/apr?d=1',
+#     'https://prabhupadabooks.com/conversations/1973/may?d=1',
+#     'https://prabhupadabooks.com/conversations/1973/jun?d=1',
+#     'https://prabhupadabooks.com/conversations/1973/jul?d=1',
+#     'https://prabhupadabooks.com/conversations/1973/aug?d=1',
+#     'https://prabhupadabooks.com/conversations/1973/sep?d=1',
+#     'https://prabhupadabooks.com/conversations/1973/nov?d=1',
+#     'https://prabhupadabooks.com/conversations/1973/dec?d=1',
+#     'https://prabhupadabooks.com/conversations/1974/jan?d=1',
+#     'https://prabhupadabooks.com/conversations/1974/feb?d=1',
+#     'https://prabhupadabooks.com/conversations/1974/mar?d=1',
+#     'https://prabhupadabooks.com/conversations/1974/apr?d=1',
+#     'https://prabhupadabooks.com/conversations/1974/may?d=1',
+#     'https://prabhupadabooks.com/conversations/1974/jun?d=1',
+#     'https://prabhupadabooks.com/conversations/1974/jul?d=1',
+#     'https://prabhupadabooks.com/conversations/1974/aug?d=1',
+#     'https://prabhupadabooks.com/conversations/1974/sep?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/jan?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/feb?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/mar?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/apr?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/may?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/jun?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/jul?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/aug?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/sep?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/oct?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/nov?d=1',
+#     'https://prabhupadabooks.com/conversations/1975/dec?d=1',
+#     'https://prabhupadabooks.com/conversations/1976/jan?d=1',
+#     'https://prabhupadabooks.com/conversations/1976/feb?d=1',
+#     'https://prabhupadabooks.com/conversations/1976/mar?d=1',
+#     'https://prabhupadabooks.com/conversations/1976/apr?d=1',
+#     'https://prabhupadabooks.com/conversations/1976/may?d=1',
+#     'https://prabhupadabooks.com/conversations/1976/jun?d=1',
+#     'https://prabhupadabooks.com/conversations/1976/jul?d=1'
+#     ]
 
 
 # # Headers to include in the request
@@ -448,74 +448,240 @@ urls = [
 
 # print("Data saved to 'all_conversations.csv'")
 
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
+# import requests
+# from bs4 import BeautifulSoup
+# import pandas as pd
 
-# Headers to include in the request
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-    'Accept-Language': 'en-US,en;q=0.9'
-}
+# # Headers to include in the request
+# headers = {
+#     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+#     'Accept-Language': 'en-US,en;q=0.9'
+# }
 
-# Initialize lists to store the questions and answers
-questions = []
-answers = []
+# # Initialize lists to store the questions and answers
+# questions = []
+# answers = []
 
-def clean_text(text):
-    return ' '.join(text.split()).strip()
+# def clean_text(text):
+#     return ' '.join(text.split()).strip()
 
-# Loop through all URLs and extract conversations
-for url in urls:
-    # Send a GET request to the URL
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
+# # Loop through all URLs and extract conversations
+# for url in urls:
+#     # Send a GET request to the URL
+#     response = requests.get(url, headers=headers)
+#     response.raise_for_status()
 
-    # Parse the HTML content of the webpage
-    soup = BeautifulSoup(response.text, 'html.parser')
+#     # Parse the HTML content of the webpage
+#     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Extract the conversation
-    conversation_divs = soup.find_all('div', class_='Purp-para')
+#     # Extract the conversation
+#     conversation_divs = soup.find_all('div', class_='Purp-para')
 
-    current_question = None
-    current_answer = ""
+#     current_question = None
+#     current_answer = ""
 
-    for div in conversation_divs:
-        bold_tag = div.find('span', class_='Bold')
-        if bold_tag:
-            speaker_tag = bold_tag.find('a')
-            speaker = speaker_tag.get_text(strip=True) if speaker_tag else bold_tag.get_text(strip=True)
-            text = div.get_text(strip=True).replace(f"{speaker}:", "").strip()
+#     for div in conversation_divs:
+#         bold_tag = div.find('span', class_='Bold')
+#         if bold_tag:
+#             speaker_tag = bold_tag.find('a')
+#             speaker = speaker_tag.get_text(strip=True) if speaker_tag else bold_tag.get_text(strip=True)
+#             text = div.get_text(strip=True).replace(f"{speaker}:", "").strip()
 
-            if speaker == "Prabhupāda:":
-                if current_question:
-                    current_answer += " " + text
-                else:
-                    current_answer = text
-            else:
-                if current_question and current_answer:
-                    questions.append(current_question)
-                    answers.append(clean_text(current_answer))
-                current_question = text
-                current_answer = ""
-        else:
-            current_answer += " " + div.get_text(strip=True)
+#             if speaker == "Prabhupāda:":
+#                 if current_question:
+#                     current_answer += " " + text
+#                 else:
+#                     current_answer = text
+#             else:
+#                 if current_question and current_answer:
+#                     questions.append(current_question)
+#                     answers.append(clean_text(current_answer))
+#                 current_question = text
+#                 current_answer = ""
+#         else:
+#             current_answer += " " + div.get_text(strip=True)
 
-    if current_question and current_answer:
-        questions.append(current_question)
-        answers.append(clean_text(current_answer))
+#     if current_question and current_answer:
+#         questions.append(current_question)
+#         answers.append(clean_text(current_answer))
 
-# Create a DataFrame from the extracted data
-df = pd.DataFrame({
-    'question': questions,
-    'answer': answers
-})
+# # Create a DataFrame from the extracted data
+# df = pd.DataFrame({
+#     'question': questions,
+#     'answer': answers
+# })
 
-# Clean up any remaining Prabhupāda references in answers
-df['answer'] = df['answer'].apply(lambda x: x.replace('Prabhupāda:', '').strip() if isinstance(x, str) else x)
+# # Clean up any remaining Prabhupāda references in answers
+# df['answer'] = df['answer'].apply(lambda x: x.replace('Prabhupāda:', '').strip() if isinstance(x, str) else x)
 
-# Save the DataFrame to a CSV file
-df.to_csv('conversation_combined.csv', index=False, encoding='utf-8')
+# # Save the DataFrame to a CSV file
+# df.to_csv('conversation_combined.csv', index=False, encoding='utf-8')
 
-print("Data saved to 'conversation_combined.csv'")
+# print("Data saved to 'conversation_combined.csv'")
+
+##################################################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Define the URLs of the three parts of the book
+# urls = {
+#     "Adi": "https://vedabase.io/en/library/cc/adi/",
+#     "Madhya": "https://vedabase.io/en/library/cc/madhya/",
+#     "Antya": "https://vedabase.io/en/library/cc/antya/"
+# }
+
+# # Define the number of chapters in each part
+# chapters = {
+#     "Adi": 17,
+#     "Madhya": 25,
+#     "Antya": 20
+# }
+
+# # Initialize a dictionary to store the data
+# data = {}
+
+# # Function to scrape a single chapter
+# def scrape_chapter(url):
+#     response = requests.get(url)
+#     soup = BeautifulSoup(response.content, 'html.parser')
+    
+#     chapter_data = {
+#         "Paragraph": [],
+#         "Texts": {}
+#     }
+
+#     content_div = soup.find('div', id='content')
+
+#     # Get chapter name
+#     chapter_name = content_div.find('div', class_='r-chapter-title').get_text(strip=True)
+    
+#     # Get all paragraphs
+#     paragraphs = content_div.find_all('div', class_='r-paragraph')
+#     for p in paragraphs:
+#         chapter_data["Paragraph"].append(p.get_text(strip=True))
+
+#     # Get all texts
+#     verses = content_div.find_all('dl', class_='r-verse')
+#     for verse in verses:
+#         text_id = verse.find('dt').get_text(strip=True)
+#         text_content = verse.find('dd').get_text(strip=True)
+#         chapter_data["Texts"][text_id] = text_content
+
+#     return chapter_name, chapter_data
+
+# # Iterate over each part of the book
+# for part, base_url in urls.items():
+#     data[part] = {}
+
+#     # Iterate over each chapter
+#     for chapter_num in range(1, chapters[part] + 1):
+#         chapter_url = f"{base_url}{chapter_num}/"
+#         chapter_name, chapter_data = scrape_chapter(chapter_url)
+#         data[part][f"Chapter {chapter_num}"] = {
+#             "Chapter Name": chapter_name,
+#             "Content": chapter_data
+#         }
+#         print(f"Scraped {part} Chapter {chapter_num}")
+
+# # Save the data to a JSON file
+# with open('sri_caitanya_caritamrta_data.json', 'w', encoding='utf-8') as f:
+#     json.dump(data, f, ensure_ascii=False, indent=4)
+
+############################################################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Function to extract data from a given chapter URL
+# def extract_chapter_data(chapter_url):
+#     response = requests.get(chapter_url)
+#     soup = BeautifulSoup(response.content, 'html.parser')
+    
+#     chapter_data = {}
+    
+#     # Extract chapter number and title
+#     chapter_number = soup.find('div', class_='r-title-small').h1.text.strip()
+#     chapter_title = soup.find('div', class_='r-chapter-title').h1.text.strip()
+    
+#     # Extract paragraphs
+#     paragraphs = [p.text.strip() for p in soup.find_all('div', class_='r-paragraph')]
+    
+#     chapter_data['chapter_number'] = chapter_number
+#     chapter_data['chapter_title'] = chapter_title
+#     chapter_data['content'] = paragraphs
+    
+#     return chapter_data
+
+# # Base URL for the chapters
+# base_url = "https://vedabase.io/en/library/kb/"
+# num_chapters = 90
+
+# # Dictionary to hold the entire book data
+# book_data = {}
+
+# # Iterate through all chapters and extract data
+# for chapter in range(1, num_chapters + 1):
+#     chapter_url = f"{base_url}{chapter}/"
+#     print(f"Extracting data from: {chapter_url}")
+#     chapter_data = extract_chapter_data(chapter_url)
+#     book_data[chapter] = chapter_data
+
+# # Save the data to a JSON file
+# with open('krishna_supreme_personality.json', 'w', encoding='utf-8') as json_file:
+#     json.dump(book_data, json_file, ensure_ascii=False, indent=4)
+
+# print("Data extraction complete and saved to krishna_supreme_personality.json")
+
+############################################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Function to extract data from a given chapter URL
+# def extract_chapter_data(chapter_url):
+#     response = requests.get(chapter_url)
+#     soup = BeautifulSoup(response.content, 'html.parser')
+    
+#     chapter_data = {}
+    
+#     # Extract chapter number and title
+#     chapter_number = soup.find('div', class_='r-title-small').h1.text.strip()
+#     chapter_title = soup.find('div', class_='r-chapter-title').h1.text.strip()
+    
+#     # Extract paragraphs
+#     paragraphs = [p.text.strip() for p in soup.find_all('div', class_='r-paragraph')]
+#     verses = [p.text.strip() for p in soup.find_all('div', class_='r-verse-text')]
+    
+#     chapter_data['chapter_number'] = chapter_number
+#     chapter_data['chapter_title'] = chapter_title
+#     chapter_data['content'] = paragraphs + verses
+    
+#     return chapter_data
+
+# # Base URL for the chapters
+# base_url = "https://vedabase.io/en/library/tlc/"
+# num_chapters = 32
+
+# # Dictionary to hold the entire book data
+# book_data = {}
+
+# # Iterate through all chapters and extract data
+# for chapter in range(1, num_chapters + 1):
+#     chapter_url = f"{base_url}{chapter}/"
+#     print(f"Extracting data from: {chapter_url}")
+#     chapter_data = extract_chapter_data(chapter_url)
+#     book_data[chapter] = chapter_data
+
+# # Save the data to a JSON file
+# with open('teachings_of_lord_caitanya.json', 'w', encoding='utf-8') as json_file:
+#     json.dump(book_data, json_file, ensure_ascii=False, indent=4)
+
+# print("Data extraction complete and saved to teachings_of_lord_caitanya.json")
+
+############################################################################################
+
 
