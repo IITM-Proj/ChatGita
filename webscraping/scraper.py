@@ -684,4 +684,164 @@
 
 ############################################################################################
 
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# BASE_URL = "https://vedabase.io/en/library/noi"
+# NUM_TEXTS = 11  # Number of texts in Nectar of Instruction
+
+# def fetch_page(url):
+#     response = requests.get(url)
+#     if response.status_code == 404 or "Page not found" in response.text:
+#         return None
+#     return response.text
+
+# def parse_text_page(soup):
+#     text_data = {}
+
+#     # Extract Devanagari (if available)
+#     devanagari_section = soup.find("div", class_="wrapper-devanagari")
+#     if devanagari_section:
+#         text_data["Devanagari"] = devanagari_section.get_text(strip=True)
+
+#     # Extract Text
+#     text_section = soup.find("div", class_="wrapper-verse-text")
+#     if text_section:
+#         text_data["Text"] = text_section.get_text(strip=True)
+
+#     # Extract Synonyms
+#     synonyms_section = soup.find("div", class_="wrapper-synonyms")
+#     if synonyms_section:
+#         text_data["Synonyms"] = synonyms_section.get_text(strip=True)
+
+#     # Extract Translation
+#     translation_section = soup.find("div", class_="wrapper-translation")
+#     if translation_section:
+#         text_data["Translation"] = translation_section.get_text(strip=True)
+
+#     # Extract Purport
+#     purport_section = soup.find("div", class_="wrapper-purport")
+#     if purport_section:
+#         purport_text = ""
+#         for paragraph in purport_section.find_all("div", class_="r-lang-en r-paragraph"):
+#             purport_text += paragraph.get_text(strip=True) + "\n"
+#         text_data["Purport"] = purport_text.strip()
+
+#     return text_data
+
+# def scrape_text(text_number):
+#     text_data = {}
+
+#     text_url = f"{BASE_URL}/{text_number}/"
+#     print(f"Scraping Text URL: {text_url}")
+#     text_page = fetch_page(text_url)
+    
+#     if not text_page:
+#         return None
+
+#     text_soup = BeautifulSoup(text_page, "html.parser")
+#     text_data = parse_text_page(text_soup)
+    
+#     return text_data
+
+# def main():
+#     nectar_of_instruction_data = {}
+
+#     for text_number in range(1, NUM_TEXTS + 1):
+#         print(f"Scraping Text {text_number}")
+#         text_data = scrape_text(text_number)
+#         if text_data:
+#             nectar_of_instruction_data[f"Text {text_number}"] = text_data
+
+#     # Write data to JSON
+#     with open("nectar_of_instruction_data.json", "w", encoding="utf-8") as f:
+#         json.dump(nectar_of_instruction_data, f, ensure_ascii=False, indent=4)
+
+# if __name__ == "__main__":
+#     main()
+
+############################################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# BASE_URL = "https://vedabase.io/en/library/tlk"
+# NUM_TEXTS = 18  # Number of texts in the Teachings of Lord Kapila
+
+# def fetch_page(url):
+#     response = requests.get(url)
+#     if response.status_code == 404 or "Page not found" in response.text:
+#         return None
+#     return response.text
+
+# def parse_text_page(soup):
+#     text_data = {}
+
+#     # Extract Chapter Number
+#     chapter_number = soup.find("div", class_="r-title-small r-chapter")
+#     if chapter_number:
+#         text_data["Chapter"] = chapter_number.get_text(strip=True)
+
+#     # Extract Chapter Title
+#     chapter_title = soup.find("div", class_="r-chapter-title r-title")
+#     if chapter_title:
+#         text_data["Title"] = chapter_title.get_text(strip=True)
+
+#     # Extract Text Number
+#     text_number = soup.find("div", class_="r-small-header")
+#     if text_number:
+#         text_data["Text Number"] = text_number.get_text(strip=True)
+
+#     # Extract Verse Text
+#     verse_text = soup.find("div", class_="r-verse-text")
+#     if verse_text:
+#         text_data["Verse"] = verse_text.get_text(strip=True)
+
+#     # Extract Translation
+#     translation_section = soup.find("div", class_="r-translation")
+#     if translation_section:
+#         text_data["Translation"] = translation_section.get_text(strip=True)
+
+#     # Extract Paragraphs
+#     paragraph_section = soup.find_all("div", class_="r-paragraph")
+#     paragraphs = []
+#     for paragraph in paragraph_section:
+#         paragraphs.append(paragraph.get_text(strip=True))
+#     text_data["Purport"] = "\n".join(paragraphs)
+
+#     return text_data
+
+# def scrape_text(text_number):
+#     text_data = {}
+#     text_url = f"{BASE_URL}/{text_number}/"
+#     print(f"Scraping Text URL: {text_url}")
+#     text_page = fetch_page(text_url)
+    
+#     if not text_page:
+#         return None
+
+#     text_soup = BeautifulSoup(text_page, "html.parser")
+#     text_data = parse_text_page(text_soup)
+
+#     return text_data
+
+# def main():
+#     teachings_of_lord_kapila_data = {}
+
+#     for text_number in range(1, NUM_TEXTS + 1):
+#         print(f"Scraping Text {text_number}")
+#         text_data = scrape_text(text_number)
+#         if text_data:
+#             teachings_of_lord_kapila_data[f"Text {text_number}"] = text_data
+
+#     # Write data to JSON
+#     with open("teachings_of_lord_kapila.json", "w", encoding="utf-8") as f:
+#         json.dump(teachings_of_lord_kapila_data, f, ensure_ascii=False, indent=4)
+
+# if __name__ == "__main__":
+#     main()
+
+############################################################################################
 
