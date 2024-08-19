@@ -684,82 +684,88 @@
 
 ############################################################################################
 
-# import requests
-# from bs4 import BeautifulSoup
-# import json
+import requests
+from bs4 import BeautifulSoup
+import json
 
-# BASE_URL = "https://vedabase.io/en/library/noi"
-# NUM_TEXTS = 11  # Number of texts in Nectar of Instruction
+BASE_URL = "https://vedabase.io/en/library/noi"
+NUM_TEXTS = 11  # Number of texts in Nectar of Instruction
 
-# def fetch_page(url):
-#     response = requests.get(url)
-#     if response.status_code == 404 or "Page not found" in response.text:
-#         return None
-#     return response.text
+def fetch_page(url):
+    response = requests.get(url)
+    if response.status_code == 404 or "Page not found" in response.text:
+        return None
+    return response.text
 
-# def parse_text_page(soup):
-#     text_data = {}
+def parse_text_page(soup):
+    text_data = {}
 
-#     # Extract Devanagari (if available)
-#     devanagari_section = soup.find("div", class_="wrapper-devanagari")
-#     if devanagari_section:
-#         text_data["Devanagari"] = devanagari_section.get_text(strip=True)
+    # Extract Devanagari (if available)
+    devanagari_section = soup.find("div", class_="wrapper-devanagari")
+    if devanagari_section:
+        text_data["Devanagari"] = devanagari_section.get_text(strip=True)
 
-#     # Extract Text
-#     text_section = soup.find("div", class_="wrapper-verse-text")
-#     if text_section:
-#         text_data["Text"] = text_section.get_text(strip=True)
+    # Extract Text
+    text_section = soup.find("div", class_="wrapper-verse-text")
+    if text_section:
+        text_data["Text"] = text_section.get_text(strip=True)
 
-#     # Extract Synonyms
-#     synonyms_section = soup.find("div", class_="wrapper-synonyms")
-#     if synonyms_section:
-#         text_data["Synonyms"] = synonyms_section.get_text(strip=True)
+    # Extract Synonyms
+    synonyms_section = soup.find("div", class_="wrapper-synonyms")
+    if synonyms_section:
+        text_data["Synonyms"] = synonyms_section.get_text(strip=True)
 
-#     # Extract Translation
-#     translation_section = soup.find("div", class_="wrapper-translation")
-#     if translation_section:
-#         text_data["Translation"] = translation_section.get_text(strip=True)
+    # Extract Translation
+    translation_section = soup.find("div", class_="wrapper-translation")
+    if translation_section:
+        text_data["Translation"] = translation_section.get_text(strip=True)
 
-#     # Extract Purport
-#     purport_section = soup.find("div", class_="wrapper-purport")
-#     if purport_section:
-#         purport_text = ""
-#         for paragraph in purport_section.find_all("div", class_="r-lang-en r-paragraph"):
-#             purport_text += paragraph.get_text(strip=True) + "\n"
-#         text_data["Purport"] = purport_text.strip()
-
-#     return text_data
-
-# def scrape_text(text_number):
-#     text_data = {}
-
-#     text_url = f"{BASE_URL}/{text_number}/"
-#     print(f"Scraping Text URL: {text_url}")
-#     text_page = fetch_page(text_url)
+    # Extract Purport
+    # purport_section = soup.find("div", class_="wrapper-purport")
+    # if purport_section:
+    #     purport_text = ""
+    #     for paragraph in purport_section.find_all("div", class_="r-lang-en r-paragraph"):
+    #         purport_text += paragraph.get_text(strip=True) + "\n"
+    #     text_data["Purport"] = purport_text.strip()
     
-#     if not text_page:
-#         return None
+    paragraph_section = soup.find_all("div", class_="r-paragraph")
+    paragraphs = []
+    for paragraph in paragraph_section:
+        paragraphs.append(paragraph.get_text(strip=True))
+    text_data["Purport"] = "\n".join(paragraphs)
 
-#     text_soup = BeautifulSoup(text_page, "html.parser")
-#     text_data = parse_text_page(text_soup)
+    return text_data
+
+def scrape_text(text_number):
+    text_data = {}
+
+    text_url = f"{BASE_URL}/{text_number}/"
+    print(f"Scraping Text URL: {text_url}")
+    text_page = fetch_page(text_url)
     
-#     return text_data
+    if not text_page:
+        return None
 
-# def main():
-#     nectar_of_instruction_data = {}
+    text_soup = BeautifulSoup(text_page, "html.parser")
+    text_data = parse_text_page(text_soup)
+    
+    return text_data
 
-#     for text_number in range(1, NUM_TEXTS + 1):
-#         print(f"Scraping Text {text_number}")
-#         text_data = scrape_text(text_number)
-#         if text_data:
-#             nectar_of_instruction_data[f"Text {text_number}"] = text_data
+def main():
+    nectar_of_instruction_data = {}
 
-#     # Write data to JSON
-#     with open("nectar_of_instruction_data.json", "w", encoding="utf-8") as f:
-#         json.dump(nectar_of_instruction_data, f, ensure_ascii=False, indent=4)
+    for text_number in range(1, NUM_TEXTS + 1):
+        print(f"Scraping Text {text_number}")
+        text_data = scrape_text(text_number)
+        if text_data:
+            nectar_of_instruction_data[f"Text {text_number}"] = text_data
 
-# if __name__ == "__main__":
-#     main()
+    # Write data to JSON
+    with open("nectar_of_instruction_data.json", "w", encoding="utf-8") as f:
+        json.dump(nectar_of_instruction_data, f, ensure_ascii=False, indent=4)
+
+if __name__ == "__main__":
+    main()
 
 ############################################################################################
 
@@ -844,4 +850,647 @@
 #     main()
 
 ############################################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# BASE_URL = "https://vedabase.io/en/library/iso"
+# NUM_TEXTS = 18  # Number of texts in Śrī Īśopaniṣad
+
+# def fetch_page(url):
+#     response = requests.get(url)
+#     if response.status_code == 404 or "Page not found" in response.text:
+#         return None
+#     return response.text
+
+# def parse_text_page(soup):
+#     text_data = {}
+
+#     # Extract Devanagari
+#     devanagari_section = soup.find("div", class_="r r-lang-sa r-verse-text")
+#     if devanagari_section:
+#         text_data["Devanagari"] = devanagari_section.get_text(strip=True)
+
+#     # Extract Translation
+#     translation_section = soup.find("div", class_="r r-lang-en r-translation")
+#     if translation_section:
+#         text_data["Translation"] = translation_section.get_text(strip=True)
+
+#     # Extract Purport
+#     purport_section = soup.find_all("div", class_="r r-lang-en r-paragraph")
+#     purport_text = ""
+#     for paragraph in purport_section:
+#         purport_text += paragraph.get_text(strip=True) + "\n"
+#     text_data["Purport"] = purport_text.strip()
+
+#     return text_data
+
+# def scrape_text(text_number):
+#     text_url = f"{BASE_URL}/{text_number}/"
+#     print(f"Scraping Text URL: {text_url}")
+#     text_page = fetch_page(text_url)
+    
+#     if not text_page:
+#         return None
+
+#     text_soup = BeautifulSoup(text_page, "html.parser")
+#     text_data = parse_text_page(text_soup)
+#     return text_data
+
+# def scrape_invocation():
+#     invocation_url = f"{BASE_URL}/invocation/"
+#     print(f"Scraping Invocation URL: {invocation_url}")
+#     invocation_page = fetch_page(invocation_url)
+    
+#     if not invocation_page:
+#         return None
+
+#     invocation_soup = BeautifulSoup(invocation_page, "html.parser")
+#     invocation_data = parse_text_page(invocation_soup)
+#     return invocation_data
+
+# def main():
+#     isopanishad_data = {}
+
+#     # Scrape Invocation
+#     print("Scraping Invocation")
+#     isopanishad_data["Invocation"] = scrape_invocation()
+
+#     # Scrape all Texts
+#     for text_number in range(1, NUM_TEXTS + 1):
+#         print(f"Scraping Text {text_number}")
+#         isopanishad_data[f"Text {text_number}"] = scrape_text(text_number)
+
+#     # Write data to JSON
+#     with open("isopanishad_data.json", "w", encoding="utf-8") as f:
+#         json.dump(isopanishad_data, f, ensure_ascii=False, indent=4)
+
+# if __name__ == "__main__":
+#     main()
+
+###########################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# BASE_URL = "https://vedabase.io/en/library/tqk"
+# NUM_CHAPTERS = 26  # Number of chapters in Teachings of Queen Kuntī
+
+# def fetch_page(url):
+#     response = requests.get(url)
+#     if response.status_code == 404 or "Page not found" in response.text:
+#         return None
+#     return response.text
+
+# def parse_chapter_page(soup):
+#     chapter_data = {}
+
+#     # Extract Chapter Number
+#     chapter_number_section = soup.find("div", class_="r r-title-small r-chapter")
+#     if chapter_number_section:
+#         chapter_data["Chapter Number"] = chapter_number_section.get_text(strip=True)
+
+#     # Extract Chapter Title
+#     chapter_title_section = soup.find("div", class_="r r-lang-en r-chapter-title r-title")
+#     if chapter_title_section:
+#         chapter_data["Chapter Title"] = chapter_title_section.get_text(strip=True)
+
+#     # Extract Verse Text
+#     verse_text_section = soup.find("div", class_="r r-lang-en r-verse-text")
+#     if verse_text_section:
+#         chapter_data["Verse Text"] = verse_text_section.get_text(strip=True)
+
+#     # Extract Translation
+#     translation_section = soup.find("div", class_="r r-lang-en r-translation")
+#     if translation_section:
+#         chapter_data["Translation"] = translation_section.get_text(strip=True)
+
+#     # Extract Reference (if available)
+#     reference_section = soup.find("div", class_="r r-lang-en r-reference")
+#     if reference_section:
+#         chapter_data["Reference"] = reference_section.get_text(strip=True)
+
+#     # Extract Purport (or content)
+#     purport_section = soup.find_all("div", class_="r r-lang-en r-paragraph")
+#     purport_text = ""
+#     for paragraph in purport_section:
+#         purport_text += paragraph.get_text(strip=True) + "\n"
+#     chapter_data["Purport"] = purport_text.strip()
+
+#     return chapter_data
+
+# def scrape_chapter(chapter_number):
+#     chapter_url = f"{BASE_URL}/{chapter_number}/"
+#     print(f"Scraping Chapter URL: {chapter_url}")
+#     chapter_page = fetch_page(chapter_url)
+    
+#     if not chapter_page:
+#         return None
+
+#     chapter_soup = BeautifulSoup(chapter_page, "html.parser")
+#     chapter_data = parse_chapter_page(chapter_soup)
+#     return chapter_data
+
+# def main():
+#     tqk_data = {}
+
+#     # Scrape all Chapters
+#     for chapter_number in range(1, NUM_CHAPTERS + 1):
+#         print(f"Scraping Chapter {chapter_number}")
+#         tqk_data[f"Chapter {chapter_number}"] = scrape_chapter(chapter_number)
+
+#     # Write data to JSON
+#     with open("teachings_of_queen_kunti.json", "w", encoding="utf-8") as f:
+#         json.dump(tqk_data, f, ensure_ascii=False, indent=4)
+
+# if __name__ == "__main__":
+#     main()
+
+#############################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Base URL for the chapters
+# base_url = "https://vedabase.io/en/library/bbd/"
+
+# # Number of chapters in the book
+# num_chapters = 5
+
+# # Initialize a list to store all chapters' content
+# all_chapters_content = []
+
+# # Loop through each chapter
+# for chapter_num in range(1, num_chapters + 1):
+#     # Construct the chapter URL
+#     url = f"{base_url}{chapter_num}/"
+    
+#     # Send a GET request to the URL
+#     response = requests.get(url)
+    
+#     # Parse the page content with BeautifulSoup
+#     soup = BeautifulSoup(response.text, "html.parser")
+    
+#     # Extract the chapter title
+#     chapter_title = soup.find("div", class_="r-chapter-title").get_text(strip=True)
+    
+#     # Extract the verse
+#     verse = soup.find("div", class_="r-verse-text").get_text(strip=True)
+    
+#     # Extract all paragraphs
+#     paragraphs = soup.find_all("div", class_="r-paragraph")
+#     paragraph_texts = [para.get_text(strip=True) for para in paragraphs]
+    
+#     # Combine the chapter content into a dictionary
+#     chapter_content = {
+#         "chapter_number": chapter_num,
+#         "chapter_title": chapter_title,
+#         "verse": verse,
+#         "content": paragraph_texts
+#     }
+    
+#     # Append the chapter content to the list
+#     all_chapters_content.append(chapter_content)
+
+# # Save all chapters' content to a JSON file
+# with open("beyond_birth_and_death_all_chapters.json", "w") as f:
+# #     json.dump(all_chapters_content, f, indent=4)
+
+# print("All chapters' content saved to beyond_birth_and_death_all_chapters.json")
+
+################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Base URL for the chapters
+# base_url = "https://vedabase.io/en/library/bhakti/"
+
+# # Number of chapters in the book
+# num_chapters = 8
+
+# # Initialize a list to store all chapters' content
+# all_chapters_content = []
+
+# # Loop through each chapter
+# for chapter_num in range(1, num_chapters + 1):
+#     # Construct the chapter URL
+#     url = f"{base_url}{chapter_num}/"
+    
+#     # Send a GET request to the URL
+#     response = requests.get(url)
+    
+#     # Parse the page content with BeautifulSoup
+#     soup = BeautifulSoup(response.text, "html.parser")
+    
+#     # Extract the chapter title
+#     chapter_title = soup.find("div", class_="r-chapter").get_text(strip=True)
+    
+#     # Extract all paragraphs
+#     content_div = soup.find("div", id="content")
+#     paragraphs = content_div.find_all("div", class_="r")
+#     paragraph_texts = [para.get_text(strip=True) for para in paragraphs]
+    
+#     # Combine the chapter content into a dictionary
+#     chapter_content = {
+#         "chapter_number": chapter_num,
+#         "chapter_title": chapter_title,
+#         "content": paragraph_texts
+#     }
+    
+#     # Append the chapter content to the list
+#     all_chapters_content.append(chapter_content)
+
+# # Save all chapters' content to a JSON file
+# with open("bhakti_the_art_of_eternal_love_all_chapters.json", "w") as f:
+#     json.dump(all_chapters_content, f, indent=4)
+
+# print("All chapters' content saved to bhakti_the_art_of_eternal_love_all_chapters.json")
+
+###################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Function to scrape the chapter content
+# def scrape_chapter(url):
+#     response = requests.get(url)
+#     soup = BeautifulSoup(response.content, "html.parser")
+    
+#     # Extract chapter title
+#     chapter_title = soup.find("div", class_="r-title").get_text(strip=True)
+    
+#     # Extract all paragraphs and verses
+#     content_div = soup.find("div", {"id": "content"})
+#     paragraphs = content_div.find_all("div", class_=["r-paragraph", "r-verse-text"])
+    
+#     # Combine text from all paragraphs
+#     chapter_text = "\n\n".join(paragraph.get_text(strip=True) for paragraph in paragraphs)
+    
+#     return {
+#         "chapter_title": chapter_title,
+#         "chapter_text": chapter_text
+#     }
+
+# # URLs for each chapter
+# chapter_urls = [
+#     "https://vedabase.io/en/library/poy/1/",
+#     "https://vedabase.io/en/library/poy/2/",
+#     "https://vedabase.io/en/library/poy/3/",
+#     "https://vedabase.io/en/library/poy/4/",
+#     "https://vedabase.io/en/library/poy/5/",
+#     "https://vedabase.io/en/library/poy/6/",
+#     "https://vedabase.io/en/library/poy/7/",
+#     "https://vedabase.io/en/library/poy/8/",
+# ]
+
+# # List to store all chapters
+# book_data = []
+
+# # Scrape each chapter
+# for url in chapter_urls:
+#     chapter_data = scrape_chapter(url)
+#     book_data.append(chapter_data)
+
+# # Save the data to a JSON file
+# with open("perfection_of_yoga.json", "w") as f:
+#     json.dump(book_data, f, indent=4)
+
+# print("Scraping completed and data saved to 'perfection_of_yoga.json'.")
+
+########################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Function to scrape the chapter content
+# def scrape_chapter(url):
+#     response = requests.get(url)
+#     soup = BeautifulSoup(response.content, "html.parser")
+    
+#     # Extract chapter number and title
+#     chapter_number = soup.find("div", class_="r-chapter").get_text(strip=True)
+#     chapter_title = soup.find("div", class_="r-title").get_text(strip=True)
+    
+#     # Extract all paragraphs and subheadings
+#     content_div = soup.find("div", {"id": "content"})
+#     elements = content_div.find_all(["h2", "div"], class_=["r-sub-chapter", "r-paragraph", "r-verse-text"])
+    
+#     chapter_text = []
+#     for element in elements:
+#         if element.name == "h2":
+#             subheading = element.get_text(strip=True)
+#             chapter_text.append(f"\n\n### {subheading}\n")
+#         else:
+#             paragraph = element.get_text(strip=True)
+#             chapter_text.append(paragraph)
+    
+#     return {
+#         "chapter_number": chapter_number,
+#         "chapter_title": chapter_title,
+#         "chapter_text": "\n\n".join(chapter_text)
+#     }
+
+# # URLs for each chapter
+# chapter_urls = [
+#     "https://vedabase.io/en/library/sc/1/",
+#     "https://vedabase.io/en/library/sc/2/",
+#     "https://vedabase.io/en/library/sc/3/",
+#     "https://vedabase.io/en/library/sc/4/",
+#     "https://vedabase.io/en/library/sc/5/",
+#     "https://vedabase.io/en/library/sc/6/",
+#     "https://vedabase.io/en/library/sc/7/",
+#     "https://vedabase.io/en/library/sc/8/",
+#     "https://vedabase.io/en/library/sc/9/",
+#     "https://vedabase.io/en/library/sc/10/",
+#     "https://vedabase.io/en/library/sc/11/",
+#     "https://vedabase.io/en/library/sc/12/",
+#     "https://vedabase.io/en/library/sc/13/",
+#     "https://vedabase.io/en/library/sc/14/",
+#     "https://vedabase.io/en/library/sc/15/",
+#     "https://vedabase.io/en/library/sc/16/",
+#     "https://vedabase.io/en/library/sc/17/",
+#     "https://vedabase.io/en/library/sc/18/",
+#     "https://vedabase.io/en/library/sc/19/",
+#     "https://vedabase.io/en/library/sc/20/",
+#     "https://vedabase.io/en/library/sc/21/",
+#     "https://vedabase.io/en/library/sc/22/",
+# ]
+
+# # List to store all chapters
+# book_data = []
+
+# # Scrape each chapter
+# for url in chapter_urls:
+#     chapter_data = scrape_chapter(url)
+#     book_data.append(chapter_data)
+
+# # Save the data to a JSON file
+# with open("second_chance.json", "w") as f:
+#     json.dump(book_data, f, indent=4)
+
+# print("Scraping completed and data saved to 'second_chance.json'.")
+
+###################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Base URL for the chapters
+# base_url = "https://vedabase.io/en/library/pop/"
+
+# # Number of chapters in the book
+# num_chapters = 10
+
+# # Initialize a list to store all chapters' content
+# all_chapters_content = []
+
+# # Loop through each chapter
+# for chapter_num in range(1, num_chapters + 1):
+#     # Construct the chapter URL
+#     url = f"{base_url}{chapter_num}/"
+    
+#     # Send a GET request to the URL
+#     response = requests.get(url)
+    
+#     # Parse the page content with BeautifulSoup
+#     soup = BeautifulSoup(response.text, "html.parser")
+    
+#     # Extract the chapter title
+#     chapter_title = soup.find("div", class_="r-chapter").get_text(strip=True)
+    
+#     # Extract all paragraphs
+#     content_div = soup.find("div", id="content")
+#     paragraphs = content_div.find_all("div", class_="r")
+#     paragraph_texts = [para.get_text(strip=True) for para in paragraphs]
+    
+#     # Combine the chapter content into a dictionary
+#     chapter_content = {
+#         "chapter_number": chapter_num,
+#         "chapter_title": chapter_title,
+#         "content": paragraph_texts
+#     }
+    
+#     # Append the chapter content to the list
+#     all_chapters_content.append(chapter_content)
+
+# # Save all chapters' content to a JSON file
+# with open("path_of_perfection.json", "w") as f:
+#     json.dump(all_chapters_content, f, indent=4)
+
+# print("All chapters' content saved to path_of_perfection.json")
+
+#####################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Base URL for the chapters
+# base_url = "https://vedabase.io/en/library/josd/"
+
+# # Number of chapters in the book
+# num_chapters = 7
+# start_chapter = 2
+
+# # Initialize a list to store all chapters' content
+# all_chapters_content = []
+
+# # Loop through each chapter, starting from chapter 2
+# for chapter_num in range(start_chapter, num_chapters + 1):
+#     # Construct the chapter URL
+#     url = f"{base_url}{chapter_num}/"
+    
+#     # Send a GET request to the URL
+#     response = requests.get(url)
+    
+#     # Parse the page content with BeautifulSoup
+#     soup = BeautifulSoup(response.text, "html.parser")
+    
+#     # Extract the chapter title
+#     chapter_title = soup.find("div", class_="r-chapter").get_text(strip=True)
+    
+#     # Extract all paragraphs
+#     content_div = soup.find("div", id="content")
+#     paragraphs = content_div.find_all("div", class_="r")
+#     paragraph_texts = [para.get_text(strip=True) for para in paragraphs]
+    
+#     # Combine the chapter content into a dictionary
+#     chapter_content = {
+#         "chapter_number": chapter_num,
+#         "chapter_title": chapter_title,
+#         "content": paragraph_texts
+#     }
+    
+#     # Append the chapter content to the list
+#     all_chapters_content.append(chapter_content)
+
+# # Save all chapters' content to a JSON file
+# with open("journey_to_self_discovery.json", "w") as f:
+#     json.dump(all_chapters_content, f, indent=4)
+
+# print("All chapters' content saved to journey_to_self_discovery.json")
+
+##################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Base URL for the chapters
+# base_url = "https://vedabase.io/en/library/nod/"
+
+# # Number of chapters in the book
+# num_chapters = 51
+
+# # Initialize a list to store all chapters' content
+# all_chapters_content = []
+
+# # Loop through each chapter
+# for chapter_num in range(1, num_chapters + 1):
+#     # Construct the chapter URL
+#     url = f"{base_url}{chapter_num}/"
+    
+#     # Send a GET request to the URL
+#     response = requests.get(url)
+    
+#     # Parse the page content with BeautifulSoup
+#     soup = BeautifulSoup(response.text, "html.parser")
+    
+#     # Extract the chapter title
+#     chapter_title = soup.find("div", class_="r-chapter").get_text(strip=True)
+    
+#     # Extract all paragraphs
+#     content_div = soup.find("div", id="content")
+#     paragraphs = content_div.find_all("div", class_="r")
+#     paragraph_texts = [para.get_text(strip=True) for para in paragraphs]
+    
+#     # Combine the chapter content into a dictionary
+#     chapter_content = {
+#         "chapter_number": chapter_num,
+#         "chapter_title": chapter_title,
+#         "content": paragraph_texts
+#     }
+    
+#     # Append the chapter content to the list
+#     all_chapters_content.append(chapter_content)
+
+# # Save all chapters' content to a JSON file
+# with open("nectar_of_devotion.json", "w") as f:
+#     json.dump(all_chapters_content, f, indent=4)
+
+# print("All chapters' content saved to nectar_of_devotion.json")
+
+###################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Base URL for the chapters
+# base_url = "https://vedabase.io/en/library/rv/"
+
+# # Number of chapters in the book
+# num_chapters = 8
+
+# # Initialize a list to store all chapters' content
+# all_chapters_content = []
+
+# # Loop through each chapter
+# for chapter_num in range(1, num_chapters + 1):
+#     # Construct the chapter URL
+#     url = f"{base_url}{chapter_num}/"
+    
+#     # Send a GET request to the URL
+#     response = requests.get(url)
+    
+#     # Parse the page content with BeautifulSoup
+#     soup = BeautifulSoup(response.text, "html.parser")
+    
+#     # Extract the chapter title
+#     chapter_title = soup.find("div", class_="r-chapter-title").get_text(strip=True)
+    
+#     # Extract all paragraphs
+#     content_div = soup.find("div", id="content")
+#     paragraphs = content_div.find_all("div", class_="r")
+#     paragraph_texts = [para.get_text(strip=True) for para in paragraphs]
+    
+#     # Combine the chapter content into a dictionary
+#     chapter_content = {
+#         "chapter_number": chapter_num,
+#         "chapter_title": chapter_title,
+#         "content": paragraph_texts
+#     }
+    
+#     # Append the chapter content to the list
+#     all_chapters_content.append(chapter_content)
+
+# # Save all chapters' content to a JSON file
+# with open("raja_vidya.json", "w") as f:
+#     json.dump(all_chapters_content, f, indent=4)
+
+# print("All chapters' content saved to raja_vidya.json")
+
+#################################################################
+
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# # Base URL for the chapters
+# base_url = "https://vedabase.io/en/library/owk/"
+
+# # Number of chapters in the book
+# num_chapters = 5
+
+# # Initialize a list to store all chapters' content
+# all_chapters_content = []
+
+# # Loop through each chapter
+# for chapter_num in range(1, num_chapters + 1):
+#     # Construct the chapter URL
+#     url = f"{base_url}{chapter_num}/"
+    
+#     # Send a GET request to the URL
+#     response = requests.get(url)
+    
+#     # Parse the page content with BeautifulSoup
+#     soup = BeautifulSoup(response.text, "html.parser")
+    
+#     # Extract the chapter title
+#     chapter_title = soup.find("div", class_="r-chapter-title").get_text(strip=True)
+    
+#     # Extract all paragraphs
+#     content_div = soup.find("div", id="content")
+#     paragraphs = content_div.find_all("div", class_="r")
+#     paragraph_texts = [para.get_text(strip=True) for para in paragraphs]
+    
+#     # Combine the chapter content into a dictionary
+#     chapter_content = {
+#         "chapter_number": chapter_num,
+#         "chapter_title": chapter_title,
+#         "content": paragraph_texts
+#     }
+    
+#     # Append the chapter content to the list
+#     all_chapters_content.append(chapter_content)
+
+# # Save all chapters' content to a JSON file
+# with open("on_the_way_of_krsna.json", "w") as f:
+#     json.dump(all_chapters_content, f, indent=4)
+
+# print("All chapters' content saved to on_the_way_of_krsna.json")
+
+#######################################################################
+
+
+
+
 
