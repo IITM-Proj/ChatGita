@@ -420,7 +420,7 @@
 #             speaker_tag = bold_tag.find('a')
 #             speaker = speaker_tag.get_text(strip=True) if speaker_tag else bold_tag.get_text(strip=True)
 #             text = div.get_text(strip=True).replace(f"{speaker}:", "").strip()
-            
+
 #             if speaker == "Prabhupāda:":
 #                 if current_question:
 #                     current_answer += " " + text
